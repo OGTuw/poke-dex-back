@@ -1,0 +1,55 @@
+version: '3.8'
+
+services:
+  db:
+    container_name: poke-dex-db
+    build:
+      context: ./docker/postgresql
+      dockerfile: Dockerfile
+    image: poke-dex/db
+    env_file:
+      - docker/postgresql/.env
+    ports:
+      - "9102:5432"
+    networks:
+      - container-link
+    volumes:
+      - poke-dex-db-data:/var/lib/postgresql/data:rw
+    environment:
+      POSTGRES_INITDB_ARGS: '--encoding=UTF-8 --locale=C'
+    logging:
+      driver: json-file
+      options:
+        max-size: '5m'
+        max-file: '1'
+
+  pgadmin4:
+    container_name: poke-dex-pgadmin4
+    image: dpage/pgadmin4:6.4
+    env_file:
+      - docker/pgadmin4/.env
+    depends_on:
+      - db
+    ports:
+      - "9103:80"
+    networks:
+      - container-link
+    volumes:
+      - poke-dex-pgadmin4-data:/var/lib/pgadmin:rw
+    logging:
+      driver: json-file
+      options:
+        max-size: '5m'
+        max-file: '1'
+
+networks:
+  default:
+    name: bridge
+  container-link:
+    name: poke-dex.docker.internal
+
+volumes:
+  poke-dex-db-data:
+    driver: local
+  poke-dex-pgadmin4-data:
+    driver: local

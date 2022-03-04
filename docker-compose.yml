@@ -42,6 +42,20 @@ services:
       options:
         max-size: '5m'
         max-file: '1'
+  
+  app:
+    container_name: java
+    image: openjdk:17
+    ports:
+      - "8080:8080"
+    networks:
+      - container-link
+    tty: true
+    volumes:
+      - ./server:/srv:cached
+    working_dir: /srv
+    depends_on:
+      - db
 
 networks:
   default:
@@ -53,4 +67,6 @@ volumes:
   poke-dex-db-data:
     driver: local
   poke-dex-pgadmin4-data:
+    driver: local
+  app:
     driver: local

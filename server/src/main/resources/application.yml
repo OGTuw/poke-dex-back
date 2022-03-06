@@ -1,19 +1,20 @@
 spring:
   datasource:
-    url: jdbc:postgresql://db:5432/pokemon
+    url: jdbc:postgresql://db:5432/pokemon?serverTimezone=JST
     username: admin
     password: admin
     driverClassName: org.postgresql.Driver
   
   jpa:
+    database: POSTGRESQL
     database-platform: org.hibernate.dialect.PostgreSQLDialect
-    show-sql: false
+    show-sql: true
     hibernate:
       ddl-auto: none
 
-server:
-  servlet:
-    context-path: /api
+# server:
+#   servlet:
+#     context-path: /api
 
 springdoc:
   api-docs:

@@ -1,23 +1,23 @@
 package com.pokedex.api.model;
 
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
 @Entity
-public class PokedexList {
+@Table(name = "types")
+public class Types {
     @Id
-    @GeneratedValue
     private Integer id;
 
     @NotBlank
-    private String name;
-
-    @NotBlank
-    private String image;
+    private String identifier;
 
     @NotNull
-    private String[] types;
+    private Integer generation_id;
+
+    @NotNull
+    private Integer damage_class_id;
 }

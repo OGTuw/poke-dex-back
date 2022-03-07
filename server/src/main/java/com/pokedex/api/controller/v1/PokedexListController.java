@@ -2,7 +2,7 @@ package com.pokedex.api.controller.v1;
 
 import java.util.List;
 
-import com.pokedex.api.model.PokedexList;
+import com.pokedex.api.model.Pokemon;
 import com.pokedex.api.repository.PokedexListRepository;
 
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,7 +19,7 @@ public class PokedexListController {
     @Operation(summary = "リストを取得します。")
     @GetMapping("/")
 
-    List<PokedexList> findPokedexList() {
+    List<Pokemon> findPokedexList() {
         return repository.findAll();
     }
 }

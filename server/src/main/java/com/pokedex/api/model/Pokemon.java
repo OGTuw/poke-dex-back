@@ -1,5 +1,6 @@
 package com.pokedex.api.model;
 
+import java.io.Serializable;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
@@ -8,7 +9,7 @@ import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "pokemon")
-public class Pokemon {
+public class Pokemon implements Serializable {
     @Id
     private Integer id;
 

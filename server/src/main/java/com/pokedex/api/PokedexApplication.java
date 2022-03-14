@@ -13,10 +13,10 @@ import io.swagger.v3.oas.annotations.info.Info;
 @RestController
 public class PokedexApplication {
 
-	// @RequestMapping("/")
-	// public String home() {
-	// 	return "Hello Spring World";
-	// }
+	 @RequestMapping("/")
+	 public String home() {
+	 	return "Hello Spring World";
+	 }
 
 	public static void main(String[] args) {
 		SpringApplication.run(PokedexApplication.class, args);
